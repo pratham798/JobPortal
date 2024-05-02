@@ -11,7 +11,7 @@ const JobCard = (job) => {
   const dispatch = useDispatch();
   const showJobModal = (job) => dispatch(displayJobModal(job));
   return (
-    <div key={job.jdUid} className={styles.cardWrapper}>
+    <div className={styles.cardWrapper}>
       <div className={styles.posted}>⏳ Posted 1 Day Ago</div>
       <div className={styles.jobHeader}>
         <img src={jobIcon} alt="logo"/>

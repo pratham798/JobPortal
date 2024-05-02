@@ -27,7 +27,7 @@ const App = () => {
       <Navbar />
       <div className={styles.jobsWrapper}>
         {jobsData.jobs && (
-          jobsData.jobs.map((job) => <JobCard {...job}/>
+          jobsData.jobs.map((job, idx) => <JobCard {...job} key={idx}/>
         ))}
       </div>
       {jobsData.displayJobModal && <JobModal />}
