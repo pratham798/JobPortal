@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchJobs } from '../store/reducers/jobReducer';
+import JobCard from './JobCard';
 
 import Navbar from './Navbar';
 import styles from './App.module.css';
@@ -23,6 +24,9 @@ const App = () => {
     <>
       <Navbar />
       <div className={styles.jobsWrapper}>
+        {jobsData.jobs && (
+          jobsData.jobs.map((job) => <JobCard {...job}/>
+        ))}
       </div>
     </>
   )
