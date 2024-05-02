@@ -9,9 +9,15 @@ export const fetchJobs = createAsyncThunk('jobs/fetchJobs', async () => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
+  const body = JSON.stringify({
+    "limit": 9,
+    "offset": 0
+   });
+
   const requestOptions = {
     method: "POST",
     headers: myHeaders,
+    body
   };
 
   // Call the searchJobs function from the Jobs module and await the result

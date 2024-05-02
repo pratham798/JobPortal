@@ -5,3 +5,10 @@
   gap: 3.5rem;
   justify-content: center;
 }
+
+.loadJobs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+}

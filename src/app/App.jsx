@@ -1,18 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchJobs } from '../store/reducers/jobReducer';
 import JobCard from './JobCard';
 import JobModal from './JobModal';
+import CircularLoader from './utils/circularLoader';
+import useIntersection from './hooks/useIntersection';
 
 import Navbar from './Navbar';
 import styles from './App.module.css';
 
 const App = () => {
   const dispatch = useDispatch();
+  const targetRef = useRef(null);
+  const isOnScreen = useIntersection(targetRef);
+
   useEffect(() => {
-    dispatch(fetchJobs());
-  }, [dispatch]);
+    if(isOnScreen) dispatch(fetchJobs());
+  }, [dispatch, isOnScreen]);
 
   const jobsData = useSelector((state) => ({
     jobs: state.jobOpenings.jobs,
@@ -29,6 +34,9 @@ const App = () => {
         {jobsData.jobs && (
           jobsData.jobs.map((job, idx) => <JobCard {...job} key={idx}/>
         ))}
+      </div>
+      <div className={styles.loadJobs} ref={targetRef}>
+        <CircularLoader/>
       </div>
       {jobsData.displayJobModal && <JobModal />}
     </>
