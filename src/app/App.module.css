@@ -1,0 +1,6 @@
+.jobsWrapper {
+  padding: 1.6rem 3.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3.5rem;
+}
