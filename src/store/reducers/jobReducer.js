@@ -28,7 +28,7 @@ const initialState = {
   },
   isLoading: true,
   isError: false,
-  jobDisplayModal: {},
+  jobModalData: {},
   showJobModal: false,
 };
 
@@ -39,11 +39,16 @@ export const jobReducer = createSlice({
     displayJobModal: (state, action) => {
       return {
         ...state,
-        jobDisplayModal: action.payload,
+        jobModalData: action.payload,
         showJobModal: true,
       };
     },
-    hideJobModal: () => ({showJobModal: false}),
+    hideJobModal: (state) => {
+      return {
+        ...state,
+        showJobModal: false,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchJobs.pending, (state) => {
