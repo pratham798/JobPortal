@@ -33,8 +33,7 @@ const initialState = {
 export const jobReducer = createSlice({
   name: 'jobs',
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchJobs.pending, (state) => {
      state.isLoading = true;
@@ -43,7 +42,7 @@ export const jobReducer = createSlice({
     builder.addCase(fetchJobs.fulfilled, (state, action) => {
      state.isLoading = false;
      state.isError = false;
-     state.jobs = action.payload.jobData;
+     state.jobs = [...state.jobs, ...action.payload];
     })
     builder.addCase(fetchJobs.rejected, (state) => {
      state.isError = true;

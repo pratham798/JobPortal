@@ -9,7 +9,7 @@ async function searchJobs(requestOptions) {
   try {
     const response = await fetch('https://api.weekday.technology/adhoc/getSampleJdJSON', requestOptions);
     const jobs= await response.json();
-    return jobs;
+    return jobs.jdList;
   } catch(error){
     return error;
   }
