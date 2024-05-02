@@ -56,6 +56,13 @@
   line-height: 1.3rem;
 }
 
+.salary {
+  font-size: var(--h7-size);
+  color: #4c5969;
+  font-weight: var(--normal-font-weight);
+  letter-spacing: 0.05rem;
+}
+
 .jobInfo {
   position: relative;
   max-height: 18rem;
@@ -109,4 +116,6 @@
   border-radius: 0.5rem;
   text-align: center;
   width: 100%;
+  cursor: pointer;
+  text-decoration: none;
 }

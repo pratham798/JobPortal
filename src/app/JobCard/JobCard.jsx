@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './JobCard.module.css';
 
 import jobIcon from '../assets/svg/job-icon.svg'
+import { getSalary } from '../utils/getSalary';
 
 const JobCard = (job) => {
   return (
@@ -16,6 +17,9 @@ const JobCard = (job) => {
           <span className={styles.jobLocation}>{job.location}</span>
         </span>
       </div>
+      <div className={styles.salary}>
+        {getSalary(job.minJdSalary,job.maxJdSalary)}
+      </div>
       <div className={styles.jobInfo}>
         <span className={styles.infoHeader}>About Company:</span><br/>
         <span className={styles.infoContent}>{job.jobDetailsFromCompany}</span>
@@ -28,7 +32,11 @@ const JobCard = (job) => {
             <span>{job.minExp} years</span>
           </div>
         )}
-        <span className={styles.applyCta}>⚡️ Easy apply</span>
+        <a 
+          href={job.jdLink} target='_blank' 
+          className={styles.applyCta} rel="noreferrer">
+          ⚡️ Easy apply
+        </a>
       </div>
     </div>
   )
