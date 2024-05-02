@@ -57,4 +57,3 @@ const JobModal = () => {
 }
 
 export default JobModal;
-
