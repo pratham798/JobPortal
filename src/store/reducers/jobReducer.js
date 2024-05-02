@@ -5,13 +5,13 @@ import Jobs from '../../app/Api/Jobs';
  * Fetches order data asynchronously.
  * @returns {Promise} A promise that resolves to the fetched order data.
  */
-export const fetchJobs = createAsyncThunk('jobs/fetchJobs', async () => {
+export const fetchJobs = createAsyncThunk('jobs/fetchJobs', async (offset) => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
   const body = JSON.stringify({
     "limit": 9,
-    "offset": 0
+    offset
    });
 
   const requestOptions = {

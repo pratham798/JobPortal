@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchJobs } from '../store/reducers/jobReducer';
@@ -14,9 +14,14 @@ const App = () => {
   const dispatch = useDispatch();
   const targetRef = useRef(null);
   const isOnScreen = useIntersection(targetRef);
+  const [offset, setOffSet] = useState(0);
 
   useEffect(() => {
-    if(isOnScreen) dispatch(fetchJobs());
+    if(isOnScreen) {
+      dispatch(fetchJobs(offset));
+      setOffSet(prevOffset => prevOffset+10);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, isOnScreen]);
 
   const jobsData = useSelector((state) => ({
