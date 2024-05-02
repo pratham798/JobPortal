@@ -1,11 +1,9 @@
 :root {
   /* Color Pallete */
-  --base-color: #eff3f6;
   --primary-bg-color: #ffffff;
   --secondary-bg-color: #000000;
   --dark-font-color: #000000;
   --light-font-color: #ffffff;
-  --highlight-font-color: #ee1414;
 
   /* Font Weights */
   --light-font-weight: 300;

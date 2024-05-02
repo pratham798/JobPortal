@@ -28,12 +28,23 @@ const initialState = {
   },
   isLoading: true,
   isError: false,
+  jobDisplayModal: {},
+  showJobModal: false,
 };
 
 export const jobReducer = createSlice({
   name: 'jobs',
   initialState,
-  reducers: {},
+  reducers: {
+    displayJobModal: (state, action) => {
+      return {
+        ...state,
+        jobDisplayModal: action.payload,
+        showJobModal: true,
+      };
+    },
+    hideJobModal: () => ({showJobModal: false}),
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchJobs.pending, (state) => {
      state.isLoading = true;
@@ -51,6 +62,6 @@ export const jobReducer = createSlice({
   },
 });
 
-export const { } = jobReducer.actions;
+export const {displayJobModal,hideJobModal} = jobReducer.actions;
 
 export default jobReducer.reducer;
