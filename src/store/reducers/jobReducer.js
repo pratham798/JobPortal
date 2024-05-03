@@ -39,9 +39,10 @@ const handleFilter = (jobFilters, jobs) => {
 const initialState = {
   jobs: [],
   jobFilters: {
-    minExp: 5,
-    jobRole: ['ios'],
-    location: ['remote'],
+    minExp: 0,
+    minJdSalary: 0,
+    jobRole: [],
+    location: '',
   },
   filteredJobs: [],
   isLoading: true,
@@ -100,6 +101,6 @@ export const jobReducer = createSlice({
   },
 });
 
-export const {displayJobModal,hideJobModal,filterJobs} = jobReducer.actions;
+export const {displayJobModal, hideJobModal, filterJobs, editFilters} = jobReducer.actions;
 
 export default jobReducer.reducer;
