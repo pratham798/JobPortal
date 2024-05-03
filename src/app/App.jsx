@@ -40,16 +40,22 @@ const App = () => {
       {jobFilters: jobsData.jobFilters, jobs: jobsData.jobs}
     ));
   }, [dispatch, jobsData.jobFilters, jobsData.jobs]);
+
+  const isJobFiltersEmpty = (jobFilters) => {
+    return !jobFilters || Object.values(jobFilters).every(value =>
+      value == null || value === "" || value === undefined || value === 0
+    );
+  };
   
   return (
     <>
       <Navbar />
       <FilterJobs />
       <div className={styles.jobsWrapper}>
-        {jobsData?.filteredJobs?.length ? (
-          jobsData.filteredJobs.map((job, idx) => <JobCard {...job} key={idx}/>)
-        ) : (
+        {jobsData?.jobFilters && isJobFiltersEmpty(jobsData.jobFilters) ? (
           jobsData?.jobs?.map((job, idx) => <JobCard {...job} key={idx}/>)
+        ) : (
+          jobsData.filteredJobs.map((job, idx) => <JobCard {...job} key={idx}/>)
         )}
       </div>
       <div className={styles.loadJobs} ref={targetRef}>

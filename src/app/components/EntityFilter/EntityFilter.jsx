@@ -22,6 +22,7 @@ const EntityFilter = ({filterOptions, inputType, category, placeholder, filterDa
     else return value.toLowerCase();
   },[])
 
+  //Runs everytime when the filters are updated
   useEffect(() => {
     dispatch(editFilters({[category]: jobFilters}));
   }, [category, dispatch, jobFilters])
