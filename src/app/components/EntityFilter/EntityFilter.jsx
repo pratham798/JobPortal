@@ -17,7 +17,7 @@ const EntityFilter = ({filterOptions, inputType, category, placeholder, filterDa
   const dispatch = useDispatch();
 
   const parseFilterValue = useCallback((value) => {
-    if (typeof value === 'number') return value;
+    if (typeof value === 'number') return String(value);
     else return value.toLowerCase();
   },[])
 
@@ -29,9 +29,9 @@ const EntityFilter = ({filterOptions, inputType, category, placeholder, filterDa
     const value = e.target.value;
     setInputValue(value);
     setShowDropdown(true);
-    // Filter options based on input value
+    // Filter similar options based on input value
     const filtered = filterOptions.filter(option => (
-      parseFilterValue(option).includes(option.toLowerCase())
+      parseFilterValue(option).includes(parseFilterValue(value))
     ));
     setFilteredOptions(filtered);
   };
@@ -47,8 +47,14 @@ const EntityFilter = ({filterOptions, inputType, category, placeholder, filterDa
     }
   };
 
+  const clearFilters = () => {
+    setInputValue('');
+    setFilteredOptions(filterOptions);
+    if(Array.isArray(jobFilters)) setJobFilters([]);
+    else setJobFilters('');
+  }
+
   const removeTags = (tag) => {
-    console.log(tag);
     const updatedTags = jobFilters.filter(jobFilter => jobFilter !== tag);
     setJobFilters(updatedTags);
   }
@@ -58,9 +64,9 @@ const EntityFilter = ({filterOptions, inputType, category, placeholder, filterDa
       <div className={filterInputWrapperClass}>
         <div className={styles.filterInputSection}>
           {Array.isArray(jobFilters) && (
-            jobFilters.map((jobFilter) => {
+            jobFilters.map((jobFilter, idx) => {
               return (
-                <div className={styles.filterTag}>
+                <div className={styles.filterTag} key={idx}>
                   <span>{jobFilter}</span>
                   <img src={clearIcon} alt="clear" onClick={() => removeTags(jobFilter)}/>
                 </div>
@@ -79,22 +85,28 @@ const EntityFilter = ({filterOptions, inputType, category, placeholder, filterDa
           />
         </div>
         <div className={styles.filterActionContainer}>
-          {inputValue && (
-            <img src={clearIcon} alt="clear" onClick={() => handleFilterResult('')}/>
+          {!!jobFilters && (
+            <img src={clearIcon} alt="clear" onClick={() => clearFilters()}/>
           )}
-          <img src={arrowIcon} alt="arrow"/>
+          <img src={arrowIcon} onClick={() => setShowDropdown(true)} alt="arrow"/>
         </div>
       </div>
 
       {showDropdown && (
         <div className={styles.optionContainer}>
-          {filteredOptions.map((option, index) => (
-            <div className={styles.filterOption} key={index}
-              onClick={() => handleFilterResult(option)}
-            >
-              {option}
+          {filteredOptions ? (
+            filteredOptions.map((option, index) => (
+              <div className={styles.filterOption} key={index}
+                onClick={() => handleFilterResult(option)}
+              >
+                {option}
+              </div>
+            ))
+          ) : (
+            <div className={styles.filterOption}>
+              No Options
             </div>
-          ))}
+          )}
         </div>
       )}
     </div>

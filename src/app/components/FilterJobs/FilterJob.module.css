@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.2rem;
-  /* max-width: max-content; */
+  max-width: max-content;
   margin: 1.6rem auto;
   padding: 0 1.6rem;
 }
