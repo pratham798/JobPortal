@@ -25,14 +25,20 @@ export const fetchJobs = createAsyncThunk('jobs/fetchJobs', async (offset) => {
   return jobData;
 });
 
+/**
+ * Filters a list of jobs based on provided filters.
+ *
+ * If the value is an array, the job's attribute is expected to be in the array.
+ * If the value is a single value, the job's attribute is expected 
+ * to be greater than or equal to the filter value to filter out null values.
+ */
 const handleFilter = (jobFilters, jobs) => {
-  if (!jobFilters) return []; 
+  if (!jobFilters) return [];
   return jobs?.filter(job => {
-    const test = Object.entries(jobFilters).every(([key, jobFilter]) => {
-      if (Array.isArray(jobFilter)) return jobFilter.includes(job[key]);
-      return jobFilter == null || job[key] >= jobFilter;
+    return Object.entries(jobFilters).every(([key, jobFilter]) => {
+      if (Array.isArray(jobFilter) && jobFilter.length) return jobFilter.includes(job[key]);
+      else return job[key] >= jobFilter;
     });
-    return test;
   });
 }
 
