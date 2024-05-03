@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 
 import styles from './JobCard.module.css';
 
-import jobIcon from '../assets/svg/job-icon.svg'
-import { getSalary } from '../utils/getSalary';
-import { displayJobModal } from '../../store/reducers/jobReducer';
+import jobIcon from '../../assets/svg/job-icon.svg'
+import { getSalary } from '../../utils/getSalary';
+import { displayJobModal } from '../../../store/reducers/jobReducer';
 
 const JobCard = (job) => {
   const dispatch = useDispatch();

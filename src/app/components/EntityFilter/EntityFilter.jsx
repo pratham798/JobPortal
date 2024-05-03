@@ -1,9 +1,9 @@
 import React,{ useState, useEffect, useCallback } from 'react';
 import { useDispatch } from "react-redux";
 
-import { editFilters } from '../../store/reducers/jobReducer';
-import clearIcon from '../assets/svg/clear.svg'
-import arrowIcon from '../assets/svg/arrow.svg'
+import { editFilters } from '../../../store/reducers/jobReducer';
+import clearIcon from '../../assets/svg/clear.svg';
+import arrowIcon from '../../assets/svg/arrow.svg';
 
 import styles from './EntityFilter.module.css';
 

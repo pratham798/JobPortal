@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
-import useComponentVisible from '../hooks/useClickOutside';
-import { hideJobModal } from '../../store/reducers/jobReducer';
-import { getSalary } from '../utils/getSalary';
+import useComponentVisible from '../../hooks/useClickOutside';
+import { hideJobModal } from '../../../store/reducers/jobReducer';
+import { getSalary } from '../../utils/getSalary';
 
 import styles from './JobModal.module.css';
 

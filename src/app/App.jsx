@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchJobs, filterJobs } from '../store/reducers/jobReducer';
-import JobCard from './JobCard';
-import JobModal from './JobModal';
-import FilterJobs from './FilterJobs';
+import JobCard from './components/JobCard';
+import JobModal from './components/JobModal';
+import FilterJobs from './components/FilterJobs';
 import CircularLoader from './utils/circularLoader';
 import useIntersection from './hooks/useIntersection';
 

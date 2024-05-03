@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from "react-redux";
 
-import { LOCATION, EXPERIENCE, MINSALARY, ROLES } from '../constants/filterConstants';
+import { LOCATION, EXPERIENCE, MINSALARY, ROLES } from '../../constants/filterConstants';
 import EntityFilter from '../EntityFilter';
 
 import styles from './FilterJob.module.css';
