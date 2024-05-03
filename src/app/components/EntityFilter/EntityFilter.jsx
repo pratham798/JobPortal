@@ -2,6 +2,7 @@ import React,{ useState, useEffect, useCallback } from 'react';
 import { useDispatch } from "react-redux";
 
 import { editFilters } from '../../../store/reducers/jobReducer';
+import FilterTag from './FilterTag';
 import clearIcon from '../../assets/svg/clear.svg';
 import arrowIcon from '../../assets/svg/arrow.svg';
 
@@ -64,14 +65,9 @@ const EntityFilter = ({filterOptions, inputType, category, placeholder, filterDa
       <div className={filterInputWrapperClass}>
         <div className={styles.filterInputSection}>
           {Array.isArray(jobFilters) && (
-            jobFilters.map((jobFilter, idx) => {
-              return (
-                <div className={styles.filterTag} key={idx}>
-                  <span>{jobFilter}</span>
-                  <img src={clearIcon} alt="clear" onClick={() => removeTags(jobFilter)}/>
-                </div>
-              );
-            })
+            jobFilters.map((jobFilter, idx) => (
+              <FilterTag key={idx} jobFilter={jobFilter} removeTags={removeTags} />
+            ))
           )}
           <input 
             type={inputType}
@@ -103,9 +99,7 @@ const EntityFilter = ({filterOptions, inputType, category, placeholder, filterDa
               </div>
             ))
           ) : (
-            <div className={styles.filterOption}>
-              No Options
-            </div>
+            <div className={styles.filterOption}> No Options </div>
           )}
         </div>
       )}
