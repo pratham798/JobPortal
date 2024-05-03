@@ -73,6 +73,15 @@ export const jobReducer = createSlice({
         filteredJobs: handleFilter(action.payload.jobFilters, action.payload.jobs),
       };
     },
+    editFilters: (state, action) => {
+      return {
+        ...state,
+        jobFilters: {
+          ...state.jobFilters,
+          ...action.payload,
+        }
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchJobs.pending, (state) => {
