@@ -25,13 +25,25 @@ export const fetchJobs = createAsyncThunk('jobs/fetchJobs', async (offset) => {
   return jobData;
 });
 
+const handleFilter = (jobFilters, jobs) => {
+  if (!jobFilters) return []; 
+  return jobs?.filter(job => {
+    const test = Object.entries(jobFilters).every(([key, jobFilter]) => {
+      if (Array.isArray(jobFilter)) return jobFilter.includes(job[key]);
+      return jobFilter == null || job[key] >= jobFilter;
+    });
+    return test;
+  });
+}
+
 const initialState = {
   jobs: [],
   jobFilters: {
-    minExp: '',
-    location: '',
-    jobRole: ''
+    minExp: 5,
+    jobRole: ['ios'],
+    location: ['remote'],
   },
+  filteredJobs: [],
   isLoading: true,
   isError: false,
   jobModalData: {},
@@ -55,6 +67,12 @@ export const jobReducer = createSlice({
         showJobModal: false,
       };
     },
+    filterJobs: (state, action) => {
+      return {
+        ...state,
+        filteredJobs: handleFilter(action.payload.jobFilters, action.payload.jobs),
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchJobs.pending, (state) => {
@@ -73,6 +91,6 @@ export const jobReducer = createSlice({
   },
 });
 
-export const {displayJobModal,hideJobModal} = jobReducer.actions;
+export const {displayJobModal,hideJobModal,filterJobs} = jobReducer.actions;
 
 export default jobReducer.reducer;

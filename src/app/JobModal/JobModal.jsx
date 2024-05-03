@@ -10,7 +10,6 @@ import styles from './JobModal.module.css';
 const JobModal = () => {
   const dispatch = useDispatch();
   const { ref, isComponentVisible } = useComponentVisible(true);
-  console.log(isComponentVisible);
   const closeModal = useCallback(() => dispatch(hideJobModal()),[dispatch]);
 
   useEffect(() => {
