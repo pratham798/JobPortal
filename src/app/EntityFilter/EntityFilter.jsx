@@ -79,7 +79,9 @@ const EntityFilter = ({filterOptions, inputType, category, placeholder, filterDa
           />
         </div>
         <div className={styles.filterActionContainer}>
-          <img src={clearIcon} alt="clear"/>
+          {inputValue && (
+            <img src={clearIcon} alt="clear" onClick={() => handleFilterResult('')}/>
+          )}
           <img src={arrowIcon} alt="arrow"/>
         </div>
       </div>

@@ -49,6 +49,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .filterTag > img {
   width: 1rem;
+  filter: brightness(0) saturate(100%) invert(16%) sepia(1%) saturate(907%) hue-rotate(352deg) brightness(97%) contrast(87%);
 }
 
 .filterInput {
@@ -73,6 +74,11 @@ input[type="number"]::-webkit-outer-spin-button {
 .filterActionContainer > img {
   width: 1.2rem;
 }
+
+.filterActionContainer > img:hover {
+  filter: brightness(0) saturate(100%) invert(16%) sepia(1%) saturate(907%) hue-rotate(352deg) brightness(97%) contrast(87%);
+}
+
 .optionContainer {
   display: flex;
   flex-direction: column;
