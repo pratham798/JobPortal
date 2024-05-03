@@ -25,7 +25,7 @@ const FilterJobs = () => {
       />
       <EntityFilter 
         filterOptions={MINSALARY} inputType='number' category='minJdSalary'
-        placeholder='Minimum Base Pay Salary' filterData={filterData['minJdSalary']}
+        placeholder='Minimum Base Pay' filterData={filterData['minJdSalary']}
       />
     </div>
   )

@@ -41,26 +41,43 @@ const EntityFilter = ({filterOptions, inputType, category, placeholder, filterDa
       setInputValue('');
       const updatedFilters = [...jobFilters, parseFilterValue(option)];
       setJobFilters(updatedFilters);
-    }
-    else {
+    } else {
       setJobFilters(parseFilterValue(option));
       setInputValue(option);
     }
   };
 
+  const removeTags = (tag) => {
+    console.log(tag);
+    const updatedTags = jobFilters.filter(jobFilter => jobFilter !== tag);
+    setJobFilters(updatedTags);
+  }
+
   return (
     <div className={styles.filterWrapper}>
       <div className={filterInputWrapperClass}>
-        <input 
-          type={inputType}
-          value={inputValue}
-          placeholder={placeholder}
-          className={styles.filterInput}
-          onChange={handleInputChange}
-          onClick={() => setShowDropdown((prevState) => !prevState)}
-          onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
-          onSubmit={() => handleFilterResult(inputValue)}
-        />
+        <div className={styles.filterInputSection}>
+          {Array.isArray(jobFilters) && (
+            jobFilters.map((jobFilter) => {
+              return (
+                <div className={styles.filterTag}>
+                  <span>{jobFilter}</span>
+                  <img src={clearIcon} alt="clear" onClick={() => removeTags(jobFilter)}/>
+                </div>
+              );
+            })
+          )}
+          <input 
+            type={inputType}
+            value={inputValue}
+            placeholder={placeholder}
+            className={styles.filterInput}
+            onChange={handleInputChange}
+            onClick={() => setShowDropdown((prevState) => !prevState)}
+            onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
+            onSubmit={() => handleFilterResult(inputValue)}
+          />
+        </div>
         <div className={styles.filterActionContainer}>
           <img src={clearIcon} alt="clear"/>
           <img src={arrowIcon} alt="arrow"/>

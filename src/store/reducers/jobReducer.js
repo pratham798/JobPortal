@@ -84,6 +84,7 @@ export const jobReducer = createSlice({
       };
     },
   },
+  
   extraReducers: (builder) => {
     builder.addCase(fetchJobs.pending, (state) => {
      state.isLoading = true;
