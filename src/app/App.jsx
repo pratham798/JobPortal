@@ -8,7 +8,7 @@ import FilterJobs from './FilterJobs';
 import CircularLoader from './utils/circularLoader';
 import useIntersection from './hooks/useIntersection';
 
-import Navbar from './Navbar';
+import Navbar from './components/Navbar';
 import styles from './App.module.css';
 
 const App = () => {
